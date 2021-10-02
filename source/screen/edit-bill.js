@@ -18,8 +18,8 @@ import {categories} from '../utils/categories';
 import uuid from 'react-native-uuid';
 
 const EditBillScreen = props => {
-  const [date, setDate] = useState('');
   const [open, setOpen] = useState(false);
+  var date = new Date(props.date);
   const _editBill = () => {
     var new_bills = props.bills.filter(
       item => item.uuid !== props.selectedBill.uuid,
@@ -35,8 +35,8 @@ const EditBillScreen = props => {
     props.change_variable('bills', new_bills);
     props.change_variable('update', !props.update);
     props.navigation.navigate('HomeScreen');
-  };
 
+  };
   return (
     <View style={{flex: 1}}>
       <CustomHeader title={'Edit Bill'} navigation={props.navigation} />
@@ -46,12 +46,13 @@ const EditBillScreen = props => {
         <View style={styles.container}>
           <Text style={styles.textInputLabel}>Category </Text>
           <Picker
+            style={{color:'#000'}}
             selectedValue={props.category}
             onValueChange={(itemValue, itemIndex) =>
               props.change_variable('category', itemValue)
             }>
             {categories.map((item, idx) => {
-              return <Picker.Item label={item} value={item} />;
+              return <Picker.Item style={{color:'#fff'}} label={item} value={item} />;
             })}
           </Picker>
           <CustomTextInput
@@ -78,7 +79,7 @@ const EditBillScreen = props => {
                 modal
                 open={open}
                 mode="date"
-                date={props.date}
+                date={new Date()}
                 onConfirm={date => {
                   setOpen(false);
                   props.change_variable(

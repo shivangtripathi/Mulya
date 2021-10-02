@@ -8,8 +8,11 @@ export class Splash extends Component {
   componentDidMount = () => {
     getData()
       .then(data => {
+        if(data)
+        {
         this.props.change_variable('bills', data.bills);
         this.props.change_variable('budget', data.budget);
+        }
       })
       .then(() => this.props.navigation.replace('HomeScreen'));
   };

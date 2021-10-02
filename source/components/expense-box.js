@@ -20,6 +20,7 @@ const ExpenseBox = props => {
           style={styles.textInputLabel}
           value={props.budget}
           placeholder={'0'}
+          placeholderTextColor={'#dedede'}
           onChangeText={e => props.change_variable('budget', e)}
         />
       </View>

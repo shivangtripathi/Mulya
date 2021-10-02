@@ -47,15 +47,26 @@ const AddBillScreen = props => {
         onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Text style={styles.textInputLabel}>Category </Text>
-          <Picker
-            selectedValue={state.category}
-            onValueChange={(itemValue, itemIndex) =>
-              setState({...state, category: itemValue})
-            }>
-            {categories.map((item, idx) => {
-              return <Picker.Item label={item} value={item} />;
-            })}
-          </Picker>
+          <View
+            style={{
+              borderWidth: 0.2,
+              borderRadius: 2,
+              backgroundColor: '#fff',
+              borderColor: '#000',
+              marginTop: 10,
+            }}>
+            <Picker
+              style={{color:'#000'}}
+              selectedValue={state.category}
+              onValueChange={(itemValue, itemIndex) =>
+                setState({...state, category: itemValue})
+              }>
+              {categories.map((item, idx) => {
+                return <Picker.Item label={item} style={{color:'#fff'}} value={item} />;
+              })}
+            </Picker>
+          </View>
+
           <CustomTextInput
             label="Description"
             onChangeText={e => setState({...state, description: e})}
@@ -78,9 +89,12 @@ const AddBillScreen = props => {
             {open && (
               <DatePicker
                 modal
+                
                 open={open}
                 mode="date"
+                style={{backgroundColor:'#fff'}}
                 maximumDate={new Date()}
+                
                 date={new Date()}
                 onConfirm={date => {
                   setOpen(false);

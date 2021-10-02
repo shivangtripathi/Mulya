@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Image, Modal} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image, Dimensions} from 'react-native';
 import {change_variable} from '../actions';
 import {connect} from 'react-redux';
 import ExpenseBox from '../components/expense-box';
@@ -9,7 +9,7 @@ import {categories} from '../utils/categories';
 import {VictoryPie} from 'victory-native';
 import {colorScale} from '../utils/color-scale';
 import CategoryModel from './Modals/category-model';
-
+const {width} = Dimensions.get('window');
 const MULYA = 'Mulya';
 
 const HomeScreen = props => {
@@ -56,8 +56,9 @@ const HomeScreen = props => {
       return (
         <>
           <VictoryPie
-            height={350}
-            labelPosition="centroid"
+            height={280}
+            width={width-20}
+            labelPosition="startAngle"
             data={_process_data()}
             colorScale={colorScale}
             categories={{x: categories}}
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textTransform: 'uppercase',
     fontSize: 24,
+    color:'#000',
     fontWeight: 'bold',
     letterSpacing: 0.5,
   },
